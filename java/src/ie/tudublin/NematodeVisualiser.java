@@ -15,9 +15,7 @@ public class NematodeVisualiser extends PApplet
 	Minim minim;
 	AudioPlayer ap;
 	AudioBuffer ab;
-    
-	ArrayList<nematode> nematodes = new ArrayList<nematode>();
-
+    ArrayList<nematode> nematodes = new ArrayList<nematode>();
 	float halfH = height / 2;
 	float[] lerpedBuffer;
 
@@ -60,12 +58,15 @@ public class NematodeVisualiser extends PApplet
 			if(i==0)
 			{
 				float p = n.getLength();
+				String l = n.getLimbs();
+				boolean k = n.isEyes();
+
 				for(int j=0;j<=2; j++) // hard coded
 				{
-					float f = lerpedBuffer[i] * halfH * 4.0f;
+					//float f = lerpedBuffer[i] * halfH * 4.0f;
 					float x = map(j, 0, 8, edge, width - edge);
-					circle(width / 2+f, x, 80);
 					stroke(255,0,0);
+					circle(width / 2, x, 80);
 				}
 			}
 			else if(i==1)
@@ -74,6 +75,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=4; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(255,215,0);
 					circle(width / 2, x, 80);
 				}
 			}
@@ -83,6 +85,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=6; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(255, 255, 0);
 					circle(width / 2, x, 80);
 				}
 			}
@@ -92,6 +95,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=2; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(0, 255, 0);
 					circle(width / 2, x, 80);
 				}
 			}
@@ -101,6 +105,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=3; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(0, 150, 0);
 					circle(width / 2, x, 80);
 				}
 			}
@@ -110,6 +115,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=1; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(0, 0, 150);
 					circle(width / 2, x, 80);
 				}
 			}
@@ -119,6 +125,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=5; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(0, 0, 200);
 					circle(width / 2, x, 80);
 				}
 			}
@@ -128,6 +135,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=7; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(0, 0, 255);
 					circle(width / 2, x, 80);
 				}
 			}
@@ -137,6 +145,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=3; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(255, 0, 255);
 					circle(width / 2, x, 80);
 				}
 			}
@@ -146,6 +155,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=0; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(150, 0, 0);
 					circle(width / 2, x, 80);
 				}
 			}
@@ -155,6 +165,7 @@ public class NematodeVisualiser extends PApplet
 				for(int j=0; j<=5; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
+					stroke(200, 0, 0);
 					circle(width / 2, x, 80);
 				}
 			}
