@@ -5,10 +5,21 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
+import ddf.minim.AudioBuffer;
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
+
 
 public class NematodeVisualiser extends PApplet
 {
-    ArrayList<nematode> nematodes = new ArrayList<nematode>();
+	Minim minim;
+	AudioPlayer ap;
+	AudioBuffer ab;
+    
+	ArrayList<nematode> nematodes = new ArrayList<nematode>();
+
+	float halfH = height / 2;
+	float[] lerpedBuffer;
 
 	public float edge;
 	public int i;
@@ -51,15 +62,15 @@ public class NematodeVisualiser extends PApplet
 				float p = n.getLength();
 				for(int j=0;j<=2; j++) // hard coded
 				{
+					float f = lerpedBuffer[i] * halfH * 4.0f;
 					float x = map(j, 0, 8, edge, width - edge);
-					circle(width / 2, x, 80);
+					circle(width / 2+f, x, 80);
 					stroke(255,0,0);
 				}
 			}
 			else if(i==1)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=4; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -69,7 +80,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==2)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=6; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -79,7 +89,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==3)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=2; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -89,7 +98,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==4)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=3; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -99,7 +107,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==5)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=1; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -109,7 +116,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==6)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=5; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -119,7 +125,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==7)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=7; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -129,7 +134,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==8)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=3; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -139,7 +143,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==9)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=0; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -149,7 +152,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==10)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=5; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -159,7 +161,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==11)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=5; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -169,7 +170,6 @@ public class NematodeVisualiser extends PApplet
 			else if(i==12)
 			{
 				clear();
-				float p = n.getLength();
 				for(int j=0; j<=5; j++)
 				{
 					float x = map(j, 0, 8, edge, width - edge);
@@ -193,12 +193,18 @@ public class NematodeVisualiser extends PApplet
 
 	public void setup() 
 	{
+		minim = new Minim(this);
+        ap = minim.loadFile("heroplanet.mp3", 1024); 
+        ap.play();
+        ab = ap.mix;
+
 		colorMode(HSB);
 		background(0);
 		smooth();		
 		loadNematodes();
 		showNematodes();
 
+		lerpedBuffer = new float[width];
 		edge = width * 0.1f;
 	}
 	
