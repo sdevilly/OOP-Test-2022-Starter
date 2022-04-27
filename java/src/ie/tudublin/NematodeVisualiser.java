@@ -27,13 +27,21 @@ public class NematodeVisualiser extends PApplet
 	{
 		colorMode(HSB);
 		background(0);
-		smooth();				
+		smooth();		
+		loadNematodes();
+		showNematodes();
 	}
 	
-
+	void showNematodes()
+	{
+		for(nematode n:nematodes)
+		{
+			System.out.println(n);
+		}
+	}
 	public void loadNematodes()
 	{
-		Table table = loadTable("nematodes.csv", "headers");
+		Table table = loadTable("nematodes.csv", "header");
 		for(TableRow r:table.rows())
 		{
 			nematode n = new nematode(r);
