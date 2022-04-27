@@ -1,7 +1,5 @@
 package ie.tudublin;
 
-
-
 public class Main
 {
     public static void nematodeVisualiser()
